@@ -6,6 +6,10 @@ variable "aws_region" {
   default = "us-east-2"
 }
 
+variable "prefix"{
+  default = "rb-desafio"
+}
+
 # Prefix configuration and project common tags
 locals {
   prefix = "${var.prefix}-${terraform.workspace}"
