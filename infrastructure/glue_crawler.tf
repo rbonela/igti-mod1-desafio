@@ -8,16 +8,8 @@ resource "aws_glue_crawler" "rais" {
   role          = aws_iam_role.glue_role.arn
 
   s3_target {
-    path = "s3://${aws_s3_bucket.rais.id}/rais/"
+    path = "s3://${aws_s3_bucket.datalake.id}/rais/"
   }
-
-  configuration = <<EOF
-{
-   "Version": 1.0,
-   "Grouping": {
-      "TableGroupingPolicy": "CombineCompatibleSchemas" }
-}
-EOF
 
   tags = local.common_tags
 }
