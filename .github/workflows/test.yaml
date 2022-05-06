@@ -1,0 +1,45 @@
+name: Test on PR
+
+on:
+  pull_request: 
+    branches: [master] # executa a esteira sempre que houver um push na branch master
+
+jobs:
+  test:
+    name: Test infra on PR
+    runs-on: ubuntu-latest
+    # quando houver mais parâmetros, pode utilizar o "depends-on: "
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8 # faz a instalação do python 3.8 na esteira de deploy
+
+    - name: HashiCorp - Setup Terraform
+      uses: hashicorp/setup-terraform@v1.2.1
+    
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with: 
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-2
+
+    - name: Build Lambda package
+      run: |
+        sh scripts/build_lambda_package.sh
+
+    - name: IaC Apply
+      env:
+        COMMAND_IAC: terraform
+      
+      run: |
+        cd infrastructure
+        $COMMAND_IAC init
+        $COMMAND_IAC validate
+        $COMMAND_IAC plan
+    
+      # cd infrastructure acessa a pasta infrastructure que contem os arquivos do terraform!!
