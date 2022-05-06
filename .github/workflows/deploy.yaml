@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push: 
-    branches: [master] # executa a esteira sempre que houver um push na branch master
+    branches: [main] # executa a esteira sempre que houver um push na branch main
 
 jobs:
   deploy:
