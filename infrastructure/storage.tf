@@ -22,13 +22,13 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "tf_encryption" {
   }
 }
 
-resource "null_resource" "fn_example_script" {
-  triggers = {
-    always_run = timestamp()
-  }
+# resource "null_resource" "fn_example_script" {
+#   triggers = {
+#     always_run = timestamp()
+#   }
 
-  provisioner "local-exec" {
-    command = "zip -rj ../functions/fn_extract_rais.zip ../functions/fn_extract_rais"
-  }
-}
+#   provisioner "local-exec" {
+#     command = "zip -rj ../functions/fn_extract_rais.zip ../functions/fn_extract_rais"
+#   }
+# }
 
