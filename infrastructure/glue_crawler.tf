@@ -8,7 +8,7 @@ resource "aws_glue_crawler" "rais" {
   role          = aws_iam_role.glue_role.arn
 
   s3_target {
-    path = "s3://${aws_s3_bucket.datalake.id}/rais/"
+    path = "s3://${var.prefix}-${var.bucket_names[1]}/rais/"
   }
 
   tags = local.common_tags
