@@ -6,14 +6,14 @@ resource "aws_s3_bucket" "buckets" {
 }
 
 resource "aws_s3_bucket_acl" "acl_privacy" {
-  for_each = aws_s3_bucket.buckets.bucket
-  bucket = each.key
+  for_each = aws_s3_bucket.buckets
+  bucket = each.key.id
   acl    = "private"
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "tf_encryption" {
-  for_each = aws_s3_bucket.buckets.bucket
-  bucket = each.key
+  for_each = aws_s3_bucket.buckets
+  bucket = each.key.id
 
   rule {
     apply_server_side_encryption_by_default {
