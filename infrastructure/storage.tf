@@ -1,15 +1,16 @@
 resource "aws_s3_bucket" "buckets" {
   for_each =  toset(var.bucket_names)
   bucket = "${var.prefix}-${each.key}"
+  acl    = "private"
 
   tags = local.common_tags
 }
 
-resource "aws_s3_bucket_acl" "acl_privacy" {
-  for_each = aws_s3_bucket.buckets
-  bucket = each.key
-  acl    = "private"
-}
+# resource "aws_s3_bucket_acl" "acl_privacy" {
+#   for_each = aws_s3_bucket.buckets
+#   bucket = each.key
+#   acl    = "private"
+# }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "tf_encryption" {
   for_each = aws_s3_bucket.buckets

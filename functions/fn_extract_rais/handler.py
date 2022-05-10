@@ -13,7 +13,7 @@ def handler(event, context):
                 {
                     'OutputName': 'rais',
                     'S3Output': {
-                        'S3Uri': 's3://rb-desafio-prod-raw-zone/rais',
+                        'S3Uri': 's3://rb-desafio-raw-zone/rais',
                         'LocalPath': '/opt/ml/processing/output/rais',
                         'S3UploadMode': 'EndOfJob'
                     }
@@ -29,7 +29,7 @@ def handler(event, context):
             }
         },
         AppSpecification={
-            'ImageUri': '774178677404.dkr.ecr.us-east-2.amazonaws.com/rb-desafio-prod-extract-rais:latest'
+            'ImageUri': '774178677404.dkr.ecr.us-east-2.amazonaws.com/rb-desafio-extract-rais:latest'
         },
         RoleArn=sagemaker_role,
         
