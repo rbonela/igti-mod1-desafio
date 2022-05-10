@@ -1,19 +1,19 @@
 resource "aws_s3_bucket" "buckets" {
-  for_each =  toset(var.bucket_names)
-  bucket = "${var.prefix}-${each.key}"
+  count  = length(var.bucket_names)
+  bucket = "${var.prefix}-${var.bucket_names[count.index]}"
 
   tags = local.common_tags
 }
 
 resource "aws_s3_bucket_acl" "acl_privacy" {
-  for_each = aws_s3_bucket.buckets
-  bucket = aws_s3_bucket.buckets[each.key].id
+  count  = length(var.bucket_names)
+  bucket = aws_s3_bucket.buckets[count.index].id
   acl    = "private"
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "tf_encryption" {
-  for_each = aws_s3_bucket.buckets
-  bucket = aws_s3_bucket.buckets[each.key].id
+  count  = length(var.bucket_names)
+  bucket = aws_s3_bucket.buckets[count.index].id
 
   rule {
     apply_server_side_encryption_by_default {
