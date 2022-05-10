@@ -1,12 +1,8 @@
-variable "bucket_name" {
-  default = "datalake-rb-edc-desafio"
-}
-
 variable "aws_region" {
   default = "us-east-2"
 }
 
-variable "prefix"{
+variable "prefix" {
   default = "rb-desafio"
 }
 
@@ -29,7 +25,8 @@ variable "bucket_names" {
   default = [
     "raw-zone",
     "processing-zone",
-    "delivery-zone"
+    "delivery-zone",
+    "logs"
   ]
 }
 
