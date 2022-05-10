@@ -1,5 +1,4 @@
 resource "aws_s3_bucket" "buckets" {
-  region = var.aws_region
   for_each =  toset(var.bucket_names)
   bucket = "${var.prefix}-${each.key}"
 
