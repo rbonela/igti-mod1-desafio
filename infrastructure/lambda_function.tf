@@ -1,5 +1,5 @@
 resource "aws_lambda_function" "decompresss3" {
-  filename      = "../functions/fn_extract_rais.zip"
+  filename      = "../functions/fn_extract_rais"
   function_name = "${local.prefix}_df_extract_rais"
   role          = aws_iam_role.lambda_decompress.arn
   handler       = "handler.handler"
