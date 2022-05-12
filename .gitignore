@@ -1,7 +1,8 @@
 .terraform*
 
-data/*
+Data/*
 .zip
 
 test*
+functions/fn_extract_rais/package
 upload_data_parquet.py
