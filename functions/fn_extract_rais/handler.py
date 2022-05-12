@@ -28,7 +28,10 @@ def handler(event, context):
 
             }
         },
-     
+        AppSpecification={
+            'ImageUri': '774178677404.dkr.ecr.us-east-2.amazonaws.com/rb-desafio-extract-rais:latest'
+        },
+        RoleArn=sagemaker_role,
         
         
         

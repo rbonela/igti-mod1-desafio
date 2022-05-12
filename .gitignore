@@ -1,6 +1,7 @@
 .terraform*
 
 data/*
+.zip
 
 test*
 upload_data_parquet.py

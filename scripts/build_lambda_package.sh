@@ -1,10 +1,9 @@
 #!/usr/bin/env bash 
 set -e
-SCRIPT_FOLDER=$1
+SCRIPT_FOLDER=../functions/fn_extract_rais
 
-echo $1
 # Declara variavel para reutilização nas validações do diretório
-PACKAGE="$SCRIPT_FOLDER/package"
+PACKAGE="package"
 
 # Cria o diretório e instala as dependências da função lambda
 if [ -d $PACKAGE ]
