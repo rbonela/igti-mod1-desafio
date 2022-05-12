@@ -1,9 +1,14 @@
 #!/usr/bin/env bash 
 set -e
-SCRIPT_FOLDER=../functions/fn_extract_rais
+
+cd infrastructure
+
+SCRIPT_FOLDER="../functions/fn_extract_rais"
 
 # Declara variavel para reutilização nas validações do diretório
-PACKAGE="package"
+PACKAGE="$SCRIPT_FOLDER/package"
+PACKAGE_FOLDER="package"
+
 
 # Cria o diretório e instala as dependências da função lambda
 if [ -d $PACKAGE ]
@@ -12,7 +17,8 @@ then
 else
     echo "============================================="
     echo "Criando o diretório "$PACKAGE"..."
-    mkdir $PACKAGE
+    cd $SCRIPT_FOLDER
+    mkdir $PACKAGE_FOLDER
     echo "O diretório "$PACKAGE" foi criado."
     echo "============================================="
 fi
@@ -40,11 +46,9 @@ then
     echo "============================================="
     echo "Copiando função Handler..."
     cp $LAMBDA_FUNCTION $PACKAGE
-    echo "Compactando arquivo lambda_function_payload.zip"
-    cwd=$(pwd)
+    echo "Compactando arquivo lambda_function_decompress.zip"
     cd $PACKAGE
-    zip -r9 $cwd/$SCRIPT_FOLDER.zip . #Compacta o pacote para o deploy
-    cd $cwd
+    zip -r9 lambda_decompress.zip . #Compacta o pacote para o deploy
     echo "Arquivo compactado com sucesso!"
     echo "============================================="
 fi
