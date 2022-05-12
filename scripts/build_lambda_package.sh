@@ -1,6 +1,6 @@
 #!/usr/bin/env bash 
 set -e
-SCRIPT_FOLDER="../functions/fn_extract_rais"
+SCRIPT_FOLDER=../functions/fn_extract_rais
 
 # Declara variavel para reutilização nas validações do diretório
 PACKAGE="$SCRIPT_FOLDER/package"
